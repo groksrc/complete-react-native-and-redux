@@ -1,12 +1,21 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import { Button, Card, CardSection, Input } from './common'
-import { emailChanged } from '../actions'
+import { emailChanged, passwordChanged, loginUser } from '../actions'
 
 class LoginForm extends Component {
 
   onEmailChange(text) {
     this.props.emailChanged(text)
+  }
+
+  onPasswordChange(text) {
+    this.props.passwordChanged(text)
+  }
+
+  onButtonPress() {
+    const { email, password } = this.props
+    this.props.loginUser({ email, password })
   }
 
   render() {
@@ -25,10 +34,12 @@ class LoginForm extends Component {
             secureTextEntry
             label="Password"
             placeholder="password"
+            onChangeText={this.onPasswordChange.bind(this)}
+            value={this.props.password}
           />
         </CardSection>
         <CardSection>
-          <Button>
+          <Button onPress={this.onButtonPress.bind(this)}>
             Login
           </Button>
         </CardSection>
@@ -37,8 +48,13 @@ class LoginForm extends Component {
   }
 }
 
-const mapStateToProps = state => ({
-  email: state.auth.email
+const mapStateToProps = ({ auth: { email, password } }) => ({
+  email,
+  password
 })
 
-export default connect(mapStateToProps, { emailChanged })(LoginForm)
+export default connect(mapStateToProps, {
+  emailChanged,
+  passwordChanged,
+  loginUser
+})(LoginForm)
