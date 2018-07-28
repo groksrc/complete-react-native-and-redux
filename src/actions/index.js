@@ -12,6 +12,8 @@ export const passwordChanged = (text) => ({
 })
 
 export const loginUser = ({ email, password }) => (dispatch) => {
+  dispatch({ type: types.LOGIN_USER })
+
   firebase.auth().signInWithEmailAndPassword(email, password)
     .then(user => loginUserSuccess(dispatch, user))
     .catch(() => {
