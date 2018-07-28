@@ -1,6 +1,11 @@
 import * as types from '../actions/types'
 
-const INITIAL_STATE = { email: '', password: '' }
+const INITIAL_STATE = {
+  email: '',
+  password: '',
+  user: null,
+  error: '',
+}
 
 export default (state = INITIAL_STATE, action) => {
   console.log(action)
@@ -9,6 +14,10 @@ export default (state = INITIAL_STATE, action) => {
       return { ...state, email: action.payload }
     case types.PASSWORD_CHANGED:
       return { ...state, password: action.payload }
+    case types.LOGIN_USER_SUCCESS:
+      return { ...state, user: action.payload }
+    case types.LOGIN_USER_FAIL:
+      return { ...state, error: 'Authentication Failed' }
     default:
       return state
   }
