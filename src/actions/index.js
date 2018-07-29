@@ -1,5 +1,6 @@
 import firebase from '@firebase/app'
 import '@firebase/auth'
+import { Actions } from 'react-native-router-flux'
 import * as types from './types'
 
 export const emailChanged = (text) => ({
@@ -33,4 +34,5 @@ const loginUserSuccess = (dispatch, user) => {
     type: types.LOGIN_USER_SUCCESS,
     payload: user
   })
+  Actions.employeeList()
 }
