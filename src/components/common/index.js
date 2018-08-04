@@ -1,6 +1,7 @@
 import Button from './Button'
 import Card from './Card'
 import CardSection from './CardSection'
+import Confirm from './Confirm'
 import Header from './Header'
 import Input from './Input'
 import Spinner from './Spinner'
@@ -9,6 +10,7 @@ export {
   Button,
   Card,
   CardSection,
+  Confirm,
   Header,
   Input,
   Spinner
